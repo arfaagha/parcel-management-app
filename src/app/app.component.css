@@ -1,0 +1,17 @@
+div#wrapperHeader {
+    width:100%;
+    height:auto; 
+    text-align:left;
+   }
+   
+div#wrapperHeader div#header {
+    width:100%;
+    height:auto;
+    margin:0 auto;
+   }
+   
+div#wrapperHeader div#header img {
+    width:70px; /* the width of the logo image */
+    height: 70px;; /* the height of the logo image */
+    margin:0 auto;
+   }
