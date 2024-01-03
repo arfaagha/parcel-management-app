@@ -1,0 +1,71 @@
+
+<div>
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-label>Search by</mat-label>
+            <input matInput placeholder="Search" search (keyup)="applyFilter(input.value)" #input/>
+          </mat-form-field>
+        </td>
+        <td>
+          <div id="nav-parcel-form">
+            <a [routerLink]="'create'"><button type="button">Create a Parcel</button></a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+</div>
+
+  <div>
+    <table mat-table matSort [dataSource]="dataSource">
+      
+      <ng-container matColumnDef="sku">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>SKU</th>
+        <td mat-cell *matCellDef="let row">{{row.sku}}</td>
+  
+      </ng-container>
+  
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let row">{{row.description}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="streetAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Street Address</th>
+        <td mat-cell *matCellDef="let row">{{row.streetAddress}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="town">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Town</th>
+        <td mat-cell *matCellDef="let row">{{row.town}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+        <td mat-cell *matCellDef="let row">{{row.country}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="deliveryDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Date</th>
+        <td mat-cell *matCellDef="let row">{{row.deliveryDate}}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="shownColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: shownColumns"></tr>
+  
+      <tr>
+        <td class="mat-cell" colspan="4"> No item found based on your search query</td>
+      </tr>
+  
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10,25,50]" #paginator [length]="dataSource.filteredData.length" [showFirstLastButtons]="true"></mat-paginator> #
+  </div>

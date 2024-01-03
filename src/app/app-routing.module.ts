@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { ParcelComponent } from './parcel/parcel.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
-    title: 'Home Page'
-}
+    component: ParcelComponent,
+    title: 'Parcel List'
+},
 ];
 
 @NgModule({
