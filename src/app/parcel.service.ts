@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {Parcel} from './parcel';
 import { Observable, catchError, of } from 'rxjs';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,14 @@ import { Observable, catchError, of } from 'rxjs';
 
 export class ParcelService {
 
-  baseUrl= 'http://localhost:3000/parcels';
+  baseUrl= environment.apiUrl;
   parcels: Parcel[]=[];
   constructor(private  http: HttpClient) { 
 
   }
 
   getAllParcels(): Observable<Object | Parcel[]>{
-    return this.http.get(this.baseUrl).pipe(
+    return this.http.get(this.baseUrl+ '/parcels').pipe(
       catchError(this.handleError<Parcel[]>('getAllParcels', [])));
   }
 
