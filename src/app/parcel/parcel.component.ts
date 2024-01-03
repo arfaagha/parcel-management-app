@@ -47,6 +47,7 @@ export class ParcelComponent {
       this.dataSource.sort = this.sort;
     });
   }
+
   applyFilter(filterValue: string){
 
     this.dataSource.filterPredicate = function(data, filterValue: string): boolean {

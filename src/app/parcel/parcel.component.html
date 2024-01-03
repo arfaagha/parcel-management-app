@@ -58,14 +58,18 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Date</th>
         <td mat-cell *matCellDef="let row">{{row.deliveryDate}}</td>
       </ng-container>
-  
+      
       <tr mat-header-row *matHeaderRowDef="shownColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: shownColumns"></tr>
-  
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="shownColumns.length" style="text-align: center;">
+          No data to display.
+        </td>
+      </tr>
       <tr>
         <td class="mat-cell" colspan="4"> No item found based on your search query</td>
       </tr>
   
     </table>
-    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10,25,50]" #paginator [length]="dataSource.filteredData.length" [showFirstLastButtons]="true"></mat-paginator> #
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10,25,50]" #paginator [length]="dataSource.filteredData.length" [showFirstLastButtons]="true"></mat-paginator>
   </div>
