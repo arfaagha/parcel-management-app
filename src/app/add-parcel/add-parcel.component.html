@@ -1,0 +1,78 @@
+<div>
+    <div class="form-container">
+        <form [formGroup]="createParcelForm" (submit)="submitButton()">
+            <mat-card>
+                <mat-card-content>
+          <mat-form-field class="mat-50">
+            <mat-label>SKU
+                </mat-label>
+            <input matInput required formControlName="sku" >
+            <mat-error *ngIf="createParcelForm.controls['sku'].touched && createParcelForm.controls['sku'].invalid">
+              <span *ngIf="createParcelForm.controls['sku'].errors?.['required']">This field is mandatory.</span>
+              <span *ngIf="createParcelForm.controls['sku'].errors?.['pattern']">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mat-50">
+            <mat-label>Description
+            </mat-label>
+            <textarea matInput required formControlName="description"></textarea>
+            <mat-error *ngIf="createParcelForm.controls['description'].touched && createParcelForm.controls['description'].invalid">
+              <span *ngIf="createParcelForm.controls['description'].errors?.['required']">This field is mandatory.</span>
+              <span *ngIf="createParcelForm.controls['description'].errors?.['minlength']">Description should be atleast 4 characters long.</span>
+              <span *ngIf="createParcelForm.controls['description'].errors?.['maxlength']">Description should not be more than 200 characters long.</span>
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="mat-50">
+            <mat-label>Address
+            </mat-label>
+            <input matInput required formControlName="streetAddress">
+            <mat-error *ngIf="createParcelForm.controls['streetAddress'].touched && createParcelForm.controls['streetAddress'].invalid">
+              <span *ngIf="createParcelForm.controls['streetAddress'].errors?.['required']">This field is mandatory.</span>
+              <span *ngIf="createParcelForm.controls['streetAddress'].errors?.['minlength']">Address should be atleast 4 characters long.</span>
+              <span *ngIf="createParcelForm.controls['streetAddress'].errors?.['maxlength']">Address should not be more than 50 characters long.</span>
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="mat-50">
+            <mat-label>Town
+            </mat-label>
+            <input matInput required formControlName="town">
+            <mat-error *ngIf="createParcelForm.controls['town'].touched && createParcelForm.controls['town'].invalid">
+              <span *ngIf="createParcelForm.controls['town'].errors?.['required']">This field is mandatory.</span>
+              <span *ngIf="createParcelForm.controls['town'].errors?.['minlength']">Town should be atleast 2 characters long.</span>
+              <span *ngIf="createParcelForm.controls['town'].errors?.['maxlength']">Town should not be more than 40 characters long.</span>
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="mat-50">
+            <mat-label>Country
+            </mat-label>
+            <input matInput required formControlName="country">
+            <mat-error *ngIf="createParcelForm.controls['country'].touched && createParcelForm.controls['country'].invalid">
+              <span *ngIf="createParcelForm.controls['country'].errors?.['required']">This field is mandatory.</span>
+              <span *ngIf="createParcelForm.controls['country'].errors?.['minlength']">Country should be atleast 2 characters long.</span>
+              <span *ngIf="createParcelForm.controls['country'].errors?.['maxlength']">Country should not be more than 20 characters long.</span>
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="mat-50">
+            <mat-label>Delivery Date
+            </mat-label>
+            <input matInput required [matDatepicker]="picker" formControlName="deliveryDate">
+            <mat-datepicker-toggle matIconSuffix  [for]="picker"></mat-datepicker-toggle>
+            <mat-hint>dd/MM/yyyy</mat-hint>
+            <mat-datepicker #picker></mat-datepicker>
+            
+          </mat-form-field>
+                  
+        </mat-card-content>
+    <mat-card-footer>
+        <button mat-raised-button color="primary" type="submit">Create</button>
+    </mat-card-footer>      
+    </mat-card>
+        </form>
+        
+      </div>
+</div>
