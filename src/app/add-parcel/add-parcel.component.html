@@ -71,7 +71,8 @@
                   
         </mat-card-content>
     <mat-card-footer>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!createParcelForm.valid">Create</button>
+      <a [routerLink]="''"><button mat-raised-button color="primary" type="cancel">Cancel</button></a>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!createParcelForm.valid">Create</button>
     </mat-card-footer>      
     </mat-card>
         </form>
