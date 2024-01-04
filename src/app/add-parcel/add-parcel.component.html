@@ -1,4 +1,5 @@
 <div>
+
     <div class="form-container">
         <form [formGroup]="createParcelForm" (submit)="submitButton()">
             <mat-card>
@@ -6,10 +7,12 @@
           <mat-form-field class="mat-50">
             <mat-label>SKU
                 </mat-label>
-            <input matInput required formControlName="sku" >
+            <input matInput required formControlName="sku" (blur)="checkSkuValidity()">
+            <mat-hint>Hint: Format should be 1234-12345678-1234</mat-hint>
             <mat-error *ngIf="createParcelForm.controls['sku'].touched && createParcelForm.controls['sku'].invalid">
               <span *ngIf="createParcelForm.controls['sku'].errors?.['required']">This field is mandatory.</span>
-              <span *ngIf="createParcelForm.controls['sku'].errors?.['pattern']">This field is invalid.</span>
+              <span *ngIf="createParcelForm.controls['sku'].errors?.['pattern']">This field is not in correct format.</span>
+              <span *ngIf="createParcelForm.controls['sku'].errors?.['incorrect']">SKU already exists in the system.</span>
             </mat-error>
           </mat-form-field>
 
@@ -61,15 +64,14 @@
             <mat-label>Delivery Date
             </mat-label>
             <input matInput required [matDatepicker]="picker" formControlName="deliveryDate">
-            <mat-datepicker-toggle matIconSuffix  [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-hint>dd/MM/yyyy</mat-hint>
             <mat-datepicker #picker></mat-datepicker>
-            
           </mat-form-field>
                   
         </mat-card-content>
     <mat-card-footer>
-        <button mat-raised-button color="primary" type="submit">Create</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!createParcelForm.valid">Create</button>
     </mat-card-footer>      
     </mat-card>
         </form>
