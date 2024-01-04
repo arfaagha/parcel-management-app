@@ -14,9 +14,9 @@ export class AddParcelComponent {
 
     // TODO: get http response from API and
     // display appropriate message along with resetting the form
-
+    
     this.createParcelForm.reset();
-  }
+   }
 
   createParcelForm!: FormGroup;
   created = false;
@@ -25,6 +25,9 @@ export class AddParcelComponent {
     private formBuilder: FormBuilder,
     private service: ParcelService
   ) {
+    this.newForm();
+  }
+  newForm(){
     this.createParcelForm = this.formBuilder.group({
       sku: this.formBuilder.control(
         "",
