@@ -20,8 +20,9 @@ export class ParcelService {
       .pipe(catchError(this.handleError<Parcel[]>("getAllParcels", [])));
   }
 
-  createParcel(parcel: Parcel) {
-    return this.http.post(this.baseUrl + "/parcels", { parcel });
+  createParcel(parcel: Parcel): Observable<Object | Parcel> {
+    return this.http.post(this.baseUrl + "/parcels", { parcel })
+    .pipe(catchError(this.handleError<Parcel>("createParcel", parcel)));
   }
 
   private handleError<T>(operation = "operation", result?: T) {

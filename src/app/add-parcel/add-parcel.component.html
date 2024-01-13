@@ -1,7 +1,7 @@
 <div>
 
     <div class="form-container">
-        <form [formGroup]="createParcelForm" (submit)="submitButton()">
+        <form [formGroup]="createParcelForm" >
             <mat-card>
                 <mat-card-content>
           <mat-form-field class="mat-50">
@@ -72,7 +72,7 @@
         </mat-card-content>
     <mat-card-footer>
       <a [routerLink]="''"><button mat-raised-button color="primary" type="cancel">Cancel</button></a>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!createParcelForm.valid">Create</button>
+      <button mat-raised-button color="primary" type="submit" mat-raised-button (click)="openDialog('0ms', '0ms')" [disabled]="!createParcelForm.valid">Create</button>
     </mat-card-footer>      
     </mat-card>
         </form>

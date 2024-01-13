@@ -19,13 +19,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule} from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from "@angular/material/core"
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle} from "@angular/material/dialog";
+import { ConfirmDialogueComponent } from './confirm-dialogue/confirm-dialogue.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AddParcelComponent,
-    ParcelComponent
+    ParcelComponent,
+    ConfirmDialogueComponent
   ],
   imports: [
     BrowserModule,
@@ -36,17 +39,17 @@ import {MatNativeDateModule} from "@angular/material/core"
     MatFormFieldModule,
     MatSortModule,
     MatPaginatorModule,
-    MatInputModule
-    ,
-    MatButtonModule
-    ,
-    ReactiveFormsModule
-    ,
-    MatCardModule
-    ,
-    MatDatepickerModule
-    ,
-    MatNativeDateModule
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule, 
+    MatDialogActions, 
+    MatDialogClose, 
+    MatDialogTitle, 
+    MatDialogContent
   ],
   providers: [
     provideClientHydration()

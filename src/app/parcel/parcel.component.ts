@@ -4,6 +4,7 @@ import { Parcel } from '../parcel';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ParcelService } from '../parcel.service';
+import { error } from 'node:console';
 
 @Component({
   selector: 'app-parcel',
@@ -45,6 +46,8 @@ export class ParcelComponent {
       this.dataSource = new MatTableDataSource<Parcel>(this.posts);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    },(error)=>{
+      this.dataSource = new MatTableDataSource<Parcel>([]);
     });
   }
 

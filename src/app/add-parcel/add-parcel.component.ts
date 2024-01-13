@@ -2,6 +2,9 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ParcelService } from "../parcel.service";
 import { Parcel } from "../parcel";
+import { HttpErrorResponse } from "@angular/common/http";
+import { MatDialog } from "@angular/material/dialog";
+import { ConfirmDialogueComponent } from "../confirm-dialogue/confirm-dialogue.component";
 
 @Component({
   selector: "app-add-parcel",
@@ -9,21 +12,19 @@ import { Parcel } from "../parcel";
   styleUrl: "./add-parcel.component.css",
 })
 export class AddParcelComponent {
-  submitButton() {
-    this.createParcel(this.createParcelForm.value as Parcel);
-
-    // TODO: get http response from API and
-    // display appropriate message along with resetting the form
-    
+  
+   Success(){
     this.createParcelForm.reset();
    }
 
   createParcelForm!: FormGroup;
-  created = false;
+  created: boolean | undefined;
+  parcelCreateResponse!: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: ParcelService
+    private service: ParcelService,
+    private dialog: MatDialog
   ) {
     this.newForm();
   }
@@ -76,7 +77,20 @@ export class AddParcelComponent {
   }
 
   createParcel(parcel: Parcel) {
-    this.service.createParcel(parcel).subscribe((data) => {});
+    this.service.createParcel(parcel).subscribe((data) => {
+      this.created = true;
+      this.Success();
+    },
+    (error) =>{
+      this.created= false;
+
+      if(error instanceof HttpErrorResponse){
+        this.parcelCreateResponse = error.message;
+      }
+      if(error.status === 422){
+        this.parcelCreateResponse = 'Parcel could not be saved.'
+      }
+    });
   }
 
   checkSkuValidity() {
@@ -87,5 +101,16 @@ export class AddParcelComponent {
           this.createParcelForm.controls["sku"].setErrors({ incorrect: true });
         }
       });
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef= this.dialog.open(ConfirmDialogueComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+    const sub = dialogRef.componentInstance.onAdd.subscribe(() => {
+      this.createParcel(this.createParcelForm.value as Parcel);
+    });
   }
 }
