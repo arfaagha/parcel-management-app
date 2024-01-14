@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ParcelService } from "../parcel.service";
 import { Parcel } from "../parcel";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -11,10 +11,14 @@ import { ConfirmDialogueComponent } from "../confirm-dialogue/confirm-dialogue.c
   templateUrl: "./add-parcel.component.html",
   styleUrl: "./add-parcel.component.css",
 })
+
 export class AddParcelComponent {
   
+  @ViewChild('formDirective') 
+  formDirective!: NgForm;
+  
    Success(){
-    this.createParcelForm.reset();
+    this.formDirective.resetForm();
    }
 
   createParcelForm!: FormGroup;

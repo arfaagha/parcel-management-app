@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from "@angular/material/core"
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle} from "@angular/material/dialog";
 import { ConfirmDialogueComponent } from './confirm-dialogue/confirm-dialogue.component'
+import { Router, RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { ConfirmDialogueComponent } from './confirm-dialogue/confirm-dialogue.co
     MatDialogActions, 
     MatDialogClose, 
     MatDialogTitle, 
-    MatDialogContent
+    MatDialogContent,
+    RouterModule,
   ],
   providers: [
     provideClientHydration()
