@@ -83,6 +83,7 @@ export class AddParcelComponent {
   createParcel(parcel: Parcel) {
     this.service.createParcel(parcel).subscribe((data) => {
       this.created = true;
+      this.parcelCreateResponse = 'Parcel created successfully.';
       this.Success();
     },
     (error) =>{

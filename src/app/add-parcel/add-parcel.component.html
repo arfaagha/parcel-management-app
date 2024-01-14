@@ -76,6 +76,10 @@
     </mat-card-footer>      
     </mat-card>
         </form>
+        <span *ngIf="this.createParcel" matSnackBarLabel>
+          {{parcelCreateResponse}}
+        </span>
+        
         
       </div>
 </div>
